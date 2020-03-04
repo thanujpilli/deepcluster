@@ -25,6 +25,7 @@ import clustering
 import models
 from util import AverageMeter, Logger, UnifLabelSampler
 
+from datasets import UnsupervisedDataset
 
 def parse_args():
     parser = argparse.ArgumentParser(description='PyTorch Implementation of DeepCluster')
@@ -56,7 +57,7 @@ def parse_args():
     parser.add_argument('--momentum', default=0.9, type=float, help='momentum (default: 0.9)')
     parser.add_argument('--resume', default='', type=str, metavar='PATH',
                         help='path to checkpoint (default: None)')
-    parser.add_argument('--checkpoints', type=int, default=25000,
+    parser.add_argument('--checkpoints', type=int, default=1060,
                         help='how many iterations between two checkpoints (default: 25000)')
     parser.add_argument('--seed', type=int, default=31, help='random seed (default: 31)')
     parser.add_argument('--exp', type=str, default='', help='path to exp folder')
@@ -126,15 +127,15 @@ def main(args):
 
     # load the data
     end = time.time()
-    dataset = datasets.ImageFolder(args.data, transform=transforms.Compose(tra))
+    # dataset = datasets.ImageFolder(args.data, transform=transforms.Compose(tra))
+    dataset = UnsupervisedDataset(args.data, transform=transforms.Compose(tra))
+
     if args.verbose:
         print('Load dataset: {0:.2f} s'.format(time.time() - end))
-
     dataloader = torch.utils.data.DataLoader(dataset,
                                              batch_size=args.batch,
                                              num_workers=args.workers,
                                              pin_memory=True)
-
     # clustering algorithm to use
     deepcluster = clustering.__dict__[args.clustering](args.nmb_cluster)
 
@@ -267,7 +268,8 @@ def train(loader, model, crit, opt, epoch):
         loss = crit(output, target_var)
 
         # record loss
-        losses.update(loss.data[0], input_tensor.size(0))
+        # print(len(loss.data), input_tensor.size)
+        losses.update(loss.item(), input_tensor.size(0))
 
         # compute gradient and do SGD step
         opt.zero_grad()

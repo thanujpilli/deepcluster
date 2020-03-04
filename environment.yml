@@ -1,0 +1,44 @@
+name: deepcluster
+channels:
+  - pytorch
+  - anaconda
+  - defaults
+dependencies:
+  - ca-certificates=2020.1.1=0
+  - certifi=2019.11.28=py27_0
+  - future=0.18.2=py27_0
+  - openssl=1.1.1=h7b6447c_0
+  - _libgcc_mutex=0.1=main.conda
+  - blas=1.0=mkl.conda
+  - cudatoolkit=10.0.130=0.conda
+  - intel-openmp=2020.0=166.conda
+  - libedit=3.1.20181209=hc058e9b_0.conda
+  - libffi=3.2.1=hd88cf55_4.conda
+  - libgcc-ng=9.1.0=hdf63c60_0.conda
+  - libgfortran-ng=7.3.0=hdf63c60_0.conda
+  - libstdcxx-ng=9.1.0=hdf63c60_0.conda
+  - mkl=2020.0=166.conda
+  - mkl-service=2.3.0=py27he904b0f_0.conda
+  - mkl_fft=1.0.15=py27ha843d7b_0.conda
+  - mkl_random=1.1.0=py27hd6b4f25_0.conda
+  - ncurses=6.2=he6710b0_0
+  - numpy=1.16.5=py27h7e9f1db_0.conda
+  - numpy-base=1.16.5=py27hde5b4d6_0.conda
+  - pip=19.2.3=py27_0.conda
+  - python=2.7.17=h9bab390_0.conda
+  - readline=7.0=h7b6447c_5.conda
+  - setuptools=41.4.0=py27_0.conda
+  - six=1.12.0=py27_0.conda
+  - sqlite=3.31.1=h7b6447c_0.conda
+  - tk=8.6.8=hbc83047_0.conda
+  - wheel=0.33.6=py27_0.conda
+  - zlib=1.2.11=h7b6447c_3.conda
+  - faiss-gpu=1.6.1=py27h1a5d453_0
+  - pip:
+    - faiss==1.6.1
+    - pillow==6.2.2
+    - scikit-learn==0.20.4
+    - scipy==1.2.3
+    - torch==1.4.0
+    - torchvision==0.5.0
+
